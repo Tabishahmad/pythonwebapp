@@ -1,0 +1,38 @@
+<html>
+<head>
+    <title>Text Display</title>
+    <style>
+        .title {
+            font-size: 24px;
+            font-weight: bold;
+        }
+
+        .content {
+            white-space: pre-wrap;
+        }
+    </style>
+</head>
+<body>
+    <h1>Enter Text</h1>
+    <form action="/" method="post">
+        <input type="text" name="text" placeholder="Enter text here">
+        <input type="submit" value="Submit">
+    </form>
+    {% if text %}
+        <h2>You entered: {{ text }}</h2>
+        {% if is_url %}
+            <p>Valid URL</p>
+            {% if extracted_content %}
+                <h3>Extracted Title</h3>
+                <p class="title">{{ extracted_title }}</p>
+                <h3>Extracted Content</h3>
+                <p class="content">{{ extracted_content }}</p>
+            {% else %}
+                <p>Failed to extract content from the URL</p>
+            {% endif %}
+        {% else %}
+            <p>Invalid URL</p>
+        {% endif %}
+    {% endif %}
+</body>
+</html>
